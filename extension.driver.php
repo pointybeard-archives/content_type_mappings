@@ -39,7 +39,7 @@
 			return array(
 						array(
 							'page' => '/frontend/',
-							'delegate' => 'FrontendOutputPreGenerate',
+							'delegate' => 'FrontendOutputPostGenerate',
 							'callback' => 'setContentType'							
 						),
 			); 
@@ -53,11 +53,12 @@
 			foreach($page_data['type'] as $type){
 				$content_type = $this->resolveType($type);
 				if(!is_null($content_type)){	
-					Frontend::Page()->addHeaderToPage('Content-Type', $content_type);
+					header('Content-Type:' . $content_type, true);
 				}
-				if(substr($type, 0, 1) == "." ){	
-					$file_name = $page_data['handle'] . $type;
-					Frontend::Page()->addHeaderToPage('Content-Disposition', 'attachment; filename=' . $file_name);				
+				
+				if(substr($type, 0, 1) == "." ){  
+				          $FileName = $page_data['handle']; 
+							header('Content-Disposition: attachment; filename=' . $FileName . $type);       
 				}
 			}
 			
