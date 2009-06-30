@@ -39,7 +39,7 @@
 			return array(
 						array(
 							'page' => '/frontend/',
-							'delegate' => 'FrontendOutputPreGenerate',
+							'delegate' => 'FrontendOutputPostGenerate',
 							'callback' => 'setContentType'							
 						),
 			); 
