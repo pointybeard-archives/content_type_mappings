@@ -42,7 +42,7 @@
 							'delegate' => 'FrontendOutputPreGenerate',
 							'callback' => 'setContentType'							
 						),
-			);
+			); 
 		}
 		
 		public function setContentType(array $context=NULL){
@@ -54,6 +54,10 @@
 				$content_type = $this->resolveType($type);
 				if(!is_null($content_type)){	
 					Frontend::Page()->addHeaderToPage('Content-Type', $content_type);
+				}
+				if(substr($type, 0, 1) == "." ){	
+					$file_name = $page_data['handle'] . $type;
+					Frontend::Page()->addHeaderToPage('Content-Disposition', 'attachment; filename=' . $file_name);				
 				}
 			}
 			
