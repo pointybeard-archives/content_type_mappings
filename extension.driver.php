@@ -4,7 +4,7 @@
 		
 		public function about(){
 			return array('name' => 'Content Type Mappings',
-						 'version' => '1.0',
+						 'version' => '1.1',
 						 'release-date' => '2009-04-30',
 						 'author' => array('name' => 'Symphony Team',
 										   'website' => 'http://www.symphony21.com',
@@ -20,15 +20,15 @@
 			);
 			
 			foreach($initial_mappings as $type => $content_type){
-				$this->_Parent->Configuration->set($type, $content_type, 'content-type-mappings');
+				Administration::instance()->Configuration->set($type, $content_type, 'content-type-mappings');
 			}
 			
 			$this->_Parent->saveConfig();	
 		}	
 
 		public function uninstall(){
-			$this->_Parent->Configuration->remove('content-type-mappings');			
-			$this->_Parent->saveConfig();
+			Administration::instance()->Configuration->remove('content-type-mappings');			
+			Administration::instance()->saveConfig();
 		}
 
 		public function resolveType($type){
@@ -52,16 +52,16 @@
 			
 			foreach($page_data['type'] as $type){
 				$content_type = $this->resolveType($type);
+				
 				if(!is_null($content_type)){	
-					header('Content-Type:' . $content_type, true);
+					header("Content-Type: {$content_type}", true);
 				}
 				
-				if(substr($type, 0, 1) == "." ){  
-				          $FileName = $page_data['handle']; 
-							header('Content-Disposition: attachment; filename=' . $FileName . $type);       
+				if($type{0} == '.'){  
+					$FileName = $page_data['handle'];
+					header("Content-Disposition: attachment; filename={$FileName}{$type}");
 				}
 			}
-			
 		}
 	}
 
