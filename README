@@ -1,10 +1,10 @@
 Content Type Mappings
 ------------------------------------
 
-Version: 1.1
+Version: 1.2
 Author: Alistair Kearney (alistair@symphony-cms.com)
 Build Date: 29th July 2009
-Requirements: Symphony 2.0.2 or greater
+Requirements: Symphony 2.0.5 or greater
 
 Allows more control over Frontend page content type mappings. Each mapping is 
 stored in the Symphony config file, and page type is matched against these mappings.
@@ -41,7 +41,9 @@ stored in the Symphony config file, and page type is matched against these mappi
 
 
 [CHANGE LOG]
-
+	
+	1.2 - Fixed to work properly with Page::addHeaderToPage()
+	
 	1.1  - Symphony 2.0.5 compatibility upgrade
 		 - Force download option (thanks to ashooner)
 	

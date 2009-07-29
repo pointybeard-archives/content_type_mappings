@@ -4,7 +4,7 @@
 		
 		public function about(){
 			return array('name' => 'Content Type Mappings',
-						 'version' => '1.1',
+						 'version' => '1.2',
 						 'release-date' => '2009-04-30',
 						 'author' => array('name' => 'Symphony Team',
 										   'website' => 'http://www.symphony21.com',
@@ -54,7 +54,7 @@
 				$content_type = $this->resolveType($type);
 				
 				if(!is_null($content_type)){	
-					header("Content-Type: {$content_type}", true);
+					Frontend::Page()->addHeaderToPage('Content-Type', $content_type);
 				}
 				
 				if($type{0} == '.'){  
