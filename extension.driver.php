@@ -4,7 +4,7 @@
 		
 		public function about(){
 			return array('name' => 'Content Type Mappings',
-						 'version' => '1.2',
+						 'version' => '1.3',
 						 'release-date' => '2009-04-30',
 						 'author' => array('name' => 'Symphony Team',
 										   'website' => 'http://www.symphony21.com',
@@ -39,9 +39,9 @@
 			return array(
 						array(
 							'page' => '/frontend/',
-							'delegate' => 'FrontendOutputPostGenerate',
+							'delegate' => 'FrontendPreRenderHeaders',
 							'callback' => 'setContentType'							
-						),
+						),						
 			); 
 		}
 		
@@ -59,9 +59,10 @@
 				
 				if($type{0} == '.'){  
 					$FileName = $page_data['handle'];
-					header("Content-Disposition: attachment; filename={$FileName}{$type}");
+					Frontend::Page()->addHeaderToPage('Content-Disposition', "attachment; filename={$FileName}{$type}");
 				}
 			}
 		}
+
 	}
 
