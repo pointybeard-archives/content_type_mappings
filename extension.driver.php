@@ -32,7 +32,7 @@
 		}
 
 		public function resolveType($type){
-			return $this->_Parent->Configuration->get(strtolower($type), 'content-type-mappings');
+			return Symphony::Configuration()->get(strtolower($type), 'content-type-mappings');
 		}
 		
 		public function getSubscribedDelegates(){
