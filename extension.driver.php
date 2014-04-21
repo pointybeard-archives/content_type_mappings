@@ -20,15 +20,15 @@
 			);
 			
 			foreach($initial_mappings as $type => $content_type){
-				Administration::instance()->Configuration->set($type, $content_type, 'content-type-mappings');
+				Symphony::Configuration()->set($type, $content_type, 'content-type-mappings');
 			}
 			
-			$this->_Parent->saveConfig();	
+			Administration::saveConfig();	
 		}	
 
 		public function uninstall(){
-			Administration::instance()->Configuration->remove('content-type-mappings');			
-			Administration::instance()->saveConfig();
+			Symphony::Configuration()->remove('content-type-mappings');			
+			Administration::saveConfig();
 		}
 
 		public function resolveType($type){
